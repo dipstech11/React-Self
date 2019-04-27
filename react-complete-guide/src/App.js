@@ -76,12 +76,13 @@ class App extends Component {
       personToggle = (
         <div>
 
+
         {this.state.person.map((p, index) =>{
           return <Person
           name={p.name}
           age={p.age}
           key= {p.id}
-          click ={() => this.dsseleteContent(index)}
+          click ={() => this.toggleContent(index)}
           changed = {(event) => this.onChangeHandler(event, p.id)}/>
         }
         )}
