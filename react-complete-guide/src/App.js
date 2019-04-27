@@ -7,13 +7,8 @@ import Person from './Person/Person'
 class App extends Component {
   state = {
     person: [{
-        name: "x",
-        age: 33
-      },
-      {
-        name: "y",
-        age: 30
-      },
+        name: "x",age: 33},
+      {name: "y",age: 30},
     ],
     show: true
   }
@@ -69,6 +64,26 @@ class App extends Component {
     }
 
 
+    //adding personToggle condition for toggle behavior
+    let personToggle = null;
+
+    if (this.state.show){
+      //true condition
+      personToggle = (
+        <div>
+          <Person name = {this.state.person[0].name}
+          age = {this.state.person[0].age}
+          changed = {this.onChangeHandler} />
+
+          <Person name = {this.state.person[1].name}
+          age = {this.state.person[1].age}
+          click = {this.switchButtonHandler.bind(this,"mmm")}>
+          My Hobbies: Racing </Person>
+
+       </div>
+     );
+   }
+
     return (
       <div className = "App" >
 
@@ -85,39 +100,24 @@ class App extends Component {
         this.toggleContent
       } > Toggle Content </button>
 
+      {personToggle}
+    {  //terniary method for toggle::
+      // {this.state.show === true  ?
+      //   <div>
+      //       <Person name = {this.state.person[0].name}
+      //       age = {this.state.person[0].age}
+      //       changed = {this.onChangeHandler} />
+      //
+      //       <Person name = {this.state.person[1].name}
+      //       age = {this.state.person[1].age}
+      //       click = {this.switchButtonHandler.bind(this,"mmm")}>
+      //       My Hobbies: Racing </Person>
+      //
+      //    </div>
+      //    : null
 
-      {this.state.show === true  ?
-        <div>
-            <Person name = {
-              this.state.person[0].name
-            }
-            age = {
-              this.state.person[0].age
-            }
-            changed = {
-              this.onChangeHandler
-            }
-
-            />
-            <Person name = {
-              this.state.person[1].name
-            }
-            age = {
-              this.state.person[1].age
-            }
-            click = {
-              this.switchButtonHandler.bind(this,"mmm")
-            }
-
-
-            >
-             My Hobbies: Racing </Person>
-
-         </div>
-         : null
-
-      }
-
+      // }
+}
       </div>
     );
   }
