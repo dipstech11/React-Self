@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import style from './App.css';
-import Person from './Person/Person'
+import Persons from '../Components/Persons/Persons'
+import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -56,60 +57,33 @@ class App extends Component {
 
   render() {
 
-
-
-
     //adding personToggle condition for toggle behavior
-    let personToggle = null;
-    let btnClass ='';
+    let persons = null;
+
 
     if (this.state.show) {
       //true condition
-      personToggle = (
+      persons = (
         <div>
-
-          {this.state.person.map((p, index) => {
-            return <Person
-              name={p.name}
-              age={p.age}
-              key={p.id}
-              click={() => this.toggleContent(index)}
-              changed={(event) => this.onChangeHandler(event, p.id)} />
-          }
-          )}
-
+        <Persons
+        persons = {this.state.person}
+        clicked = {this.deleteContent}
+        changed = {this.onChangeHandler}
+        />
         </div>
       );
-
-      btnClass = style.red
-
     }
-
-    const classes = []
-    if (this.state.person.length > 3) {
-      classes.push(style.red)
-    }
-    if (this.state.person.length === 1) {
-      classes.push(style.bold)
-    }
-
 
     return (
 
       <div className={style.App} >
 
-        <h1> This is Header </h1>
+        <Cockpit  show = {this.state.show}
+        person = {this.state.person}
+        clicked= {this.toggleContent}
+        />
 
-        <p className={classes.join(" ")}>This is really working </p>
-
-
-        <button
-          className={btnClass}
-          onClick={
-            this.toggleContent
-          } > Toggle Content </button>
-
-        {personToggle}
+        {persons}
 
       </div>
 
