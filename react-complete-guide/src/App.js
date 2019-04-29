@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Radium, {StyleRoot} from 'radium';
 import './App.css';
 import Person from './Person/Person'
 
@@ -64,10 +63,7 @@ class App extends Component {
       padding: "8px",
       cursor: "pointer",
       font: "bold",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
+
 
     }
 
@@ -106,10 +102,7 @@ class App extends Component {
       );
 
       buttonStyle.backgroundColor = "red"
-      buttonStyle[":hover"] = {
-        backgroundColor: "",
-        color: "black"
-      }
+
     }
 
     const classes = []
@@ -122,7 +115,7 @@ class App extends Component {
 
 
     return (
-      <StyleRoot>
+
       <div className="App" >
 
         <h1> This is Header </h1>
@@ -139,8 +132,8 @@ class App extends Component {
         {personToggle}
 
       </div>
-</StyleRoot>
+
     );
   }
 }
-export default Radium(App);
+export default App;
