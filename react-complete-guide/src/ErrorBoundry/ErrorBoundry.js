@@ -15,7 +15,8 @@ class ErrorBoundry extends Component{
 
 };
 
-render(){
+render()
+{
   if (this.state.hasError){
     return <h1>Something went Wrong</h1>
   }
