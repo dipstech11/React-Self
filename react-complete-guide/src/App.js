@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import style from './App.css';
 import Person from './Person/Person'
-import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 
 class App extends Component {
   state = {
@@ -67,28 +66,22 @@ class App extends Component {
     if (this.state.show) {
       //true condition
       personToggle = (
-
         <div>
 
           {this.state.person.map((p, index) => {
-            return
-            <ErrorBoundry key={person.id}>
-            <Person
+            return <Person
               name={p.name}
               age={p.age}
               key={p.id}
               click={() => this.toggleContent(index)}
               changed={(event) => this.onChangeHandler(event, p.id)} />
-
-              </ErrorBoundry>
           }
           )}
 
         </div>
-
       );
 
-      btnClass = style.Red
+      btnClass = style.red
 
     }
 

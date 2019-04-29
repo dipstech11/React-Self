@@ -13,7 +13,7 @@ class ErrorBoundry extends Component{
     msg:error})
   }
 
-};
+
 
 render()
 {
@@ -24,6 +24,6 @@ render()
     return this.props.children;
   }
 }
-
+};
 
 export default ErrorBoundry;
