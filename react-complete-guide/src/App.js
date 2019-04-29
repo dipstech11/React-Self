@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import style from './App.css';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -56,26 +56,17 @@ class App extends Component {
 
   render() {
 
-    const buttonStyle = {
-      backgroundColor: "green",
-      color: "white",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      font: "bold",
 
-
-    }
 
 
     //adding personToggle condition for toggle behavior
     let personToggle = null;
+    let btnClass ='';
 
     if (this.state.show) {
       //true condition
       personToggle = (
         <div>
-
 
           {this.state.person.map((p, index) => {
             return <Person
@@ -87,36 +78,25 @@ class App extends Component {
           }
           )}
 
-          {
-            // <Person name = {this.state.person[0].name}
-            // age = {this.state.person[0].age}
-            // changed = {this.onChangeHandler} />
-            //
-            // <Person name = {this.state.person[1].name}
-            // age = {this.state.person[1].age}
-            // click = {this.switchButtonHandler.bind(this,"mmm")}>
-            // My Hobbies: Racing </Person>
-          }
-
         </div>
       );
 
-      buttonStyle.backgroundColor = "red"
+      btnClass = style.Red
 
     }
 
     const classes = []
     if (this.state.person.length > 3) {
-      classes.push('red')
+      classes.push(style.red)
     }
     if (this.state.person.length === 1) {
-      classes.push('bold')
+      classes.push(style.bold)
     }
 
 
     return (
 
-      <div className="App" >
+      <div className={style.App} >
 
         <h1> This is Header </h1>
 
@@ -124,7 +104,7 @@ class App extends Component {
 
 
         <button
-          style={buttonStyle}
+          className={btnClass}
           onClick={
             this.toggleContent
           } > Toggle Content </button>
