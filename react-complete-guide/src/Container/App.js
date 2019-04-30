@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import style from './App.css';
 import Persons from '../Components/Persons/Persons'
 import Cockpit from '../Components/Cockpit/Cockpit'
+import WithClass from '../hoc/withClassForApp_js'
+
 
 class App extends Component {
   constructor(props){
@@ -14,7 +16,8 @@ class App extends Component {
         { id: '3', name: "y", age: 30 },
         { id: '4', name: "z", age: 20 },
       ],
-      show: false
+      show: false,
+      // counter:0
     }
   }
 
@@ -25,11 +28,22 @@ class App extends Component {
 
   shouldComponentUpdate(nextprops, nextstate){
     console.log("[App.js] shouldComponentUpdate")
-    return true
-  }
+    //optimise the code by making the person render only if it change,not all the time
+  //   if (nextprops.persons !== this.props.persons){
+  //     return true
+  //   }
+  //   else{
+  //   return false
+  // }
+  return true
+}
 
   componentDidUpdate(){
     console.log("[App.js] componentDidUpdate")
+  }
+
+  componentWillUnmount(){
+    console.log("[App.js] componentWillUnMount")
   }
 
   deleteContent = (PIndex) => {
@@ -60,8 +74,19 @@ class App extends Component {
 
     //finally setting the person with the updatedperson
     this.setState(
-      { person: allPerson }
+      { person: allPerson ,
+        // counter:this.state.counter+1 //wrong way
+
+      }
     )
+
+//setting state using prevstate and updating it on the go
+    // this.setState((prevState, props) => {
+    //   return
+    //   { person: allPerson,
+    //     counter:prevState.counter+1   //right way
+    //
+    //   }
 
   }
 
@@ -96,19 +121,18 @@ class App extends Component {
 
     return (
 
-      <div className={style.App} >
-
+      // <div className={style.App} >
+      <WithClass classes={style.App}>
         <Cockpit
         title = {this.props.title}
         show = {this.state.show}
-        person = {this.state.person}
+        personLength = {this.state.person.length}   //passing length not the person,for
+        //optimization purpose  ...React.memo(Cocktail)
         clicked= {this.toggleContent}
         />
-
         {persons}
 
-      </div>
-
+      </WithClass>
     );
   }
 }

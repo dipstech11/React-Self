@@ -1,16 +1,18 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component{
+class Persons extends PureComponent{
   static getUpdatedStateFromPops(pops, state){
     console.log("inside getUpdatedStateFromProps")
     return state
     }
 
-  shouldComponentUpdate(nextprops, nextstate){
-    console.log("inside shouldComponentUpdate")
-    return true
-    }
+//No need of this because we r extending pureComponent, which by default define 
+//the shouldComponentUpdate for us
+  // shouldComponentUpdate(nextprops, nextstate){
+  //   console.log("inside shouldComponentUpdate")
+  //   return true
+  //   }
 
   getSnapshotBeforeUpdate(prevprops, prevstate){
     console.log("inside getSnapshotBeforeUpdate")
