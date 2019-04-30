@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import style from './Cockpit.css'
 
 const cockpit = (props) => {
+
   const classes = []
   let btnClass = ''
   if (props.show){
@@ -20,7 +21,7 @@ const cockpit = (props) => {
 
   return (
     <div className= {style.Cockpit}>
-    <h1> This is Header </h1>
+    <h1> {props.title} </h1>
 
     <p className={classes.join(" ")}>This is really working </p>
 

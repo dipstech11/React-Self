@@ -4,15 +4,32 @@ import Persons from '../Components/Persons/Persons'
 import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
-  state = {
-    person: [
-      { id: '1', name: "w", age: 24 },
-      { id: '2', name: "x", age: 33 },
-      { id: '3', name: "y", age: 30 },
-      { id: '4', name: "z", age: 20 },
+  constructor(props){
+    super(props)
+    console.log('[App.js] constructor called')
+    this.state =  {
+      person: [
+        { id: '1', name: "w", age: 24 },
+        { id: '2', name: "x", age: 33 },
+        { id: '3', name: "y", age: 30 },
+        { id: '4', name: "z", age: 20 },
+      ],
+      show: false
+    }
+  }
 
-    ],
-    show: false
+  static getDerivedStateFromProps(props, state){
+    console.log("[App.js] getDerivedStateFromPops")
+    return state;
+  }
+
+  shouldComponentUpdate(nextprops, nextstate){
+    console.log("[App.js] shouldComponentUpdate")
+    return true
+  }
+
+  componentDidUpdate(){
+    console.log("[App.js] componentDidUpdate")
   }
 
   deleteContent = (PIndex) => {
@@ -54,9 +71,12 @@ class App extends Component {
 
   }
 
+  componentDidMount(){
+    console.log('[App.js] componentDidMount')
+  }
 
   render() {
-
+    console.log("inside render fun")
     //adding personToggle condition for toggle behavior
     let persons = null;
 
@@ -78,7 +98,9 @@ class App extends Component {
 
       <div className={style.App} >
 
-        <Cockpit  show = {this.state.show}
+        <Cockpit
+        title = {this.props.title}
+        show = {this.state.show}
         person = {this.state.person}
         clicked= {this.toggleContent}
         />
